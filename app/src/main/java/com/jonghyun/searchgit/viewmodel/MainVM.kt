@@ -15,17 +15,20 @@ import javax.inject.Inject
 @HiltViewModel
 class MainVM @Inject constructor(private val getGitRepoUseCase: GetGitRepoUseCase) : ViewModel() {
     var repos = MutableLiveData<ArrayList<Item>>()
-    var valid = ObservableField<Boolean>()
     var info = ObservableField<String>()
+    var valid = ObservableField<Boolean>()
     var loading = ObservableField<Boolean>()
+    var retryable = ObservableField<Boolean>()
 
     init {
         info.set("검색할 데이터를 입력하세요.")
+        retryable.set(false)
     }
 
     fun getRepos(query: String) {
         viewModelScope.launch {
             getGitRepoUseCase(query).collect {
+                retryable.set(true)
                 when (it) {
                     is Stateful.Success -> {
                         repos.postValue(it.value.items)
