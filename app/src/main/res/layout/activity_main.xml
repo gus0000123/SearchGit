@@ -15,7 +15,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        tools:context=".ui.MainActivity">
 
 
         <EditText
@@ -53,9 +53,11 @@
             android:id="@+id/rvRepos"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:visibility="@{vm.valid ? View.VISIBLE : View.GONE}"
+            android:visibility="@{vm.valid &amp;&amp; !vm.loading ? View.VISIBLE : View.GONE}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/etSearch" />
+            app:layout_constraintTop_toBottomOf="@id/etSearch"
+            tools:listitem="@layout/rv_repo" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clResultField"

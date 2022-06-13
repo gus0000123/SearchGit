@@ -1,7 +1,8 @@
-package com.jonghyun.searchgit
+package com.jonghyun.searchgit.ui
 
-import android.util.Log
 import androidx.activity.viewModels
+import com.jonghyun.searchgit.BaseActivity
+import com.jonghyun.searchgit.R
 import com.jonghyun.searchgit.databinding.ActivityMainBinding
 import com.jonghyun.searchgit.extends.hideKeyboard
 import com.jonghyun.searchgit.viewmodel.MainVM
@@ -11,11 +12,14 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     private val TAG = javaClass.simpleName
     private val mainVM by viewModels<MainVM>()
+    private val adapter = ReposAdapter()
+
     override fun observeUi() {
         mainVM.repos.observe(this) {
-            Log.d(TAG, it.toString())
+            adapter.submitList(it)
         }
 
+        binding.rvRepos.adapter = adapter
         binding.vm = mainVM
     }
 

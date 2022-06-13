@@ -1,5 +1,7 @@
 package com.jonghyun.domain.dto.res
 
+import com.google.gson.annotations.SerializedName
+
 data class Item(
     val archive_url: String,
     val archived: Boolean,
@@ -56,7 +58,8 @@ data class Item(
     val open_issues: Int,
     val open_issues_count: Int,
     val owner: Owner,
-    val `private`: Boolean,
+    @SerializedName("private")
+    val isPrivate: Boolean,//private는 예약어임으로 SerializedName을 이용해서 이름을 변경시켜주었습니다.
     val pulls_url: String,
     val pushed_at: String,
     val releases_url: String,
