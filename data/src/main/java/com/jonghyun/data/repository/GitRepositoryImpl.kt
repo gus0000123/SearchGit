@@ -11,6 +11,17 @@ class GitRepositoryImpl(private val gitService: GitService) : GitRepository {
     override suspend fun getRepositories(query: String): Flow<Stateful<ResGitRepos>> {
         return flow {
             emit(Stateful.Loading)
+            kotlin.runCatching {
+                gitService.getRepositories(query = query)
+            }.onSuccess {
+                if (it.items.isNullOrEmpty()) {
+                    emit(Stateful.Empty)
+                } else {
+                    emit(Stateful.Success(it))
+                }
+            }.onFailure {
+                emit(Stateful.Error(it))
+            }
         }
     }
 }

@@ -4,7 +4,6 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import okhttp3.Dispatcher
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -19,9 +18,9 @@ object RetrofitModule {
     @Provides
     fun provideHttpClient(): OkHttpClient {
         val okHttp = OkHttpClient.Builder().apply {
-            connectTimeout(TIMEOUT_SEC, TimeUnit.SECONDS) // connect timeout - default(30 sec)
-            readTimeout(TIMEOUT_SEC, TimeUnit.SECONDS) // read timeout - default(30 sec)
-            writeTimeout(TIMEOUT_SEC, TimeUnit.SECONDS) // write timeout - default(30 sec)
+            connectTimeout(TIMEOUT_SEC, TimeUnit.SECONDS)
+            readTimeout(TIMEOUT_SEC, TimeUnit.SECONDS)
+            writeTimeout(TIMEOUT_SEC, TimeUnit.SECONDS)
         }.build()
 
         return okHttp

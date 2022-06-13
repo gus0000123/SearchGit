@@ -8,10 +8,6 @@ interface GitService {
     @GET("repositories")
     suspend fun getRepositories(
         @Query("q")
-        query: String,
-        @Query("sort")
-        sort: String = "stars",
-        @Query("order")
-        order: String = "desc"
+        query: String
     ): ResGitRepos
 }
