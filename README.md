@@ -3,13 +3,11 @@
 
 실행화면
 ------------
-
-Dependency Diagram
-------------
+![Structure](images/실행화면.png)
 
 Data Flow
 ------------
-
+![Structure](images/data_flow.png)
 
 Layers
 ------------
