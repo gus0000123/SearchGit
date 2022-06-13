@@ -33,7 +33,7 @@ class MainVM @Inject constructor(private val getGitRepoUseCase: GetGitRepoUseCas
                     is Stateful.Empty -> {
                         info.set("데이터가 비어있습니다.")
                     }
-                    is Stateful.Error -> {
+                    is Stateful.Failure -> {
                         info.set("데이터 요청중 오류가 발생했습니다.")
                     }
                 }

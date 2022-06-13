@@ -8,14 +8,14 @@ package com.jonghyun.domain.dto
  */
 sealed class Stateful<out R> {
     data class Success<out T>(val value: T) : Stateful<T>()
-    data class Error(val exception: Throwable) : Stateful<Nothing>()
+    data class Failure(val exception: Throwable) : Stateful<Nothing>()
     object Empty : Stateful<Nothing>()
     object Loading : Stateful<Nothing>()
 
     override fun toString(): String {
         return when (this) {
             is Success<*> -> "Success[data=$value]"
-            is Error -> "Error[exception=$exception]"
+            is Failure -> "Failure[exception=$exception]"
             is Empty -> "Empty"
             Loading -> "Loading"
         }

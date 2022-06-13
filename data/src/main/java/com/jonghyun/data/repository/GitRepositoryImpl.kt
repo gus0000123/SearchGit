@@ -20,7 +20,7 @@ class GitRepositoryImpl(private val gitService: GitService) : GitRepository {
                     emit(Stateful.Success(it))
                 }
             }.onFailure {
-                emit(Stateful.Error(it))
+                emit(Stateful.Failure(it))
             }
         }
     }
