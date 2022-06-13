@@ -3,6 +3,7 @@ package com.jonghyun.searchgit
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.jonghyun.searchgit.viewmodel.MainVM
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -17,6 +18,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun observeUi() {
-
+        mainVM.getRepos("sample")
     }
 }
