@@ -4,7 +4,7 @@
 
 실행화면
 ------------
-![Structure](images/실행화면.png)
+![Structure](images/실행화면_img.png)
 
 Data Flow
 ------------
